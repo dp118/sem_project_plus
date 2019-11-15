@@ -29,16 +29,17 @@ void setup(){
   fullScreen();
   background();
   buttons(); 
+  bars(); //breaks when placed in draw -dp
   textForBars();
   //placement for actual dog pic
   dog = loadImage("true grits.png");
   img = loadImage("logo.png");
+  print(width-(BUTTON_WIDTH/3));
 }
 
 //repeatedly checks if mouse is clicked -dp
 void draw(){
     mousePressed();
-    bars();
     image(dog, (width-BUTTON_WIDTH)/2, 2*BUTTON_HEIGHT, BUTTON_WIDTH, BUTTON_HEIGHT*10);
     //sazhelle
     displayClock(); 
