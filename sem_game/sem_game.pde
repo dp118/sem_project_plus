@@ -14,7 +14,6 @@ float [] barsX = {BUTTON_HEIGHT,BUTTON_HEIGHT,BUTTON_HEIGHT,BUTTON_HEIGHT,BUTTON
 float [] barsY= {650,700,750,800};
 String [] bars= {"Health","Happiness","Grades","Wealth"};
 
-
 //ms
 PImage img;
 //dp
@@ -45,7 +44,6 @@ void draw(){
     displayClock(); 
     //ms
     image(img, BUTTON_HEIGHT, BUTTON_HEIGHT, BUTTON_WIDTH, BUTTON_HEIGHT*3); 
-    
 }
 
 //creates the buttons -dp
@@ -82,7 +80,6 @@ void displayClock(){
   textSize(32);
   textAlign(CENTER);
   text(numHour+":00", width/2,height*(.05));
-  
 }
 
 //sazhelle
