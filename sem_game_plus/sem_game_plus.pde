@@ -19,6 +19,7 @@ float Health = .1;
 float Happy = .1;
 float Grade = .75;
 float Hunger = .1;
+float Energy = .1;
 
 float textY = 2*twoThirds*20;
 float textX = 2*twoThirds*520;
@@ -29,14 +30,26 @@ PImage img;
 PImage dog;
 
 //new_hour implemented -sazhelle
-int numHour;
+int numHour =7;
 int rectXClock=100;
 int rectYClock=200;
 
 //Boolean to check if random questions are running. To hide the MAIN bars
 
+//DayWeek
+int week =1;
+int dayRef=0;
+String day[] = {"Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"};
+//0 = monday, 6 = Sunday
+
 void setup(){
   size (1024,768);
+  
+  while(millis()<2*1000){
+    intro();
+  }
+  frameRate(60);
+  rectMode(CORNER);
   background();
   buttons(); 
   drawBars(); 
@@ -45,6 +58,7 @@ void setup(){
   img = loadImage("logo.png");
   image(img, BUTTON_HEIGHT, BUTTON_HEIGHT, BUTTON_WIDTH, BUTTON_HEIGHT*3); 
   image(dog, (width-BUTTON_WIDTH)/2, 2*BUTTON_HEIGHT, 300,260);
+  randClass();
 }
 
 //repeatedly checks if mouse is clicked -dp
@@ -59,6 +73,10 @@ void draw(){
     mousePressed();   
     //sazhelle
     displayClock();
+        //sazhelle
+    displayClock(); 
+    displayDay();
+    checkEnd();
 }
 
 //creates the buttons -dp
@@ -102,7 +120,7 @@ void newHour(){
  //0:00 = 12am, once hits 24:00, will reset to 0:00
   //Rectangle to reset the clock 
   rectMode(CENTER);
-  fill(48,48,48);
+  fill(48);
   noStroke();
   rect(width/2,height*(.04),width*.1,height*.05);  
   numHour++;
@@ -141,20 +159,28 @@ void mouseClicked (){
 
 //condensed drawBars and text into one function -dp
 void drawBars(){
+  
   for(int i = 0; i < numOfBars; i++){   
-   fill(255);
+   fill(48);
    rect(BUTTON_HEIGHT*2,barsY[i],BUTTON_WIDTH*4*twoThirds,BUTTON_HEIGHT); 
+   fill(255);
    text (bars[i],width-(BUTTON_WIDTH/3),barsY[i]+BUTTON_HEIGHT);
   }
 }
 
 //Fill for inside 
 void barsFill(){
+  
+  
  for(int i = 0; i < numOfBars; i++){   
-   fill(255,200,0);
+   
    barFill[i] = constrain(barFill[i], 0,1);
    rectMode(CORNER);
-   rect(BUTTON_HEIGHT*2,barsY[i],barFill[i]*(BUTTON_WIDTH*4*twoThirds),BUTTON_HEIGHT);   
+   fill(48);
+   rect(BUTTON_HEIGHT*2,barsY[i],1*(BUTTON_WIDTH*4*twoThirds),BUTTON_HEIGHT);
+   fill(255,200,0);
+   rect(BUTTON_HEIGHT*2,barsY[i],barFill[i]*(BUTTON_WIDTH*4*twoThirds),BUTTON_HEIGHT);
+   stroke(255,200,0);
  }
 }
 
